@@ -1,0 +1,45 @@
+.div-page-body-perfil {
+  margin-top: 14vh;
+}
+
+.profile-campo {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  font-size: 25px;
+  left: 368px;
+  line-height: 47px;
+  margin: auto;
+  top: 328px;
+}
+
+.profile-campo > input {
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 25px;
+  height: 70px;
+  width: 70vw;
+}
+
+.btn-save-profile-div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+button:disabled {
+  background: rgb(61, 90, 47);
+}
+
+.btn-save-profile {
+  background: rgb(28, 209, 24);
+  font-size: 25px;
+  font-weight: 700;
+  height: 43px;
+  left: 23px;
+  margin: 15px;
+  top: 612px;
+  width: 40vw;
+}
+

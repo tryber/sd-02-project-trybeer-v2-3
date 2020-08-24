@@ -1,0 +1,99 @@
+.container-orders {
+  display: flex;
+  flex-direction: column;
+  margin-left: 35vw;
+}
+
+.order-card {
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1vh;
+  width: 100%;
+}
+
+.order-card div {
+  padding: 1vh;
+}
+
+.title-orders {
+  font-size: 2.5em;
+  margin-top: 14vh;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  width: 15%;
+}
+
+.container-detail-admin {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  padding: 1vh;
+  width: 85%;
+}
+
+.container-big-border {
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  margin: 1vh;
+  padding: 1vh;
+  width: 65%;
+}
+
+.inputs-checkout-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1vh;
+}
+
+.inputs-checkout-container input {
+  width: 60%;
+}
+
+.Admin_orders {
+  display: flex;
+  height: 100vh;
+}
+
+.Order_Card_All {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Order_Card_All a {
+  margin: 20px;
+  width: 160px;
+}
+
+.Admin_Profile {
+  margin: 20vh 0 10vh 30vw;
+}
+
+.Admin_detail_div_all {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 35vw;
+}
+
+.Admin_detail_div_all button {
+  margin: 1em;
+  width: 15vw;
+}
+
+.List_Order_Detail_all {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

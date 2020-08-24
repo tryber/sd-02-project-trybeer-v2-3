@@ -1,0 +1,30 @@
+.PastOrders_order {
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: column;
+  margin: 10px;
+  width: 10em;
+}
+
+.PastOrders_all {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 14vh;
+}
+
+.Details_order {
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 6em 1em 1em;
+  text-align: center;
+  width: 97%;
+}
+
+.Details_order_beer {
+  padding: 20px;
+}

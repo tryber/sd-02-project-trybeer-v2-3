@@ -1,0 +1,13 @@
+.container-checkout {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-detailed-checkout {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  margin: 1vh;
+  padding: 1vh;
+  width: 85%;
+}
