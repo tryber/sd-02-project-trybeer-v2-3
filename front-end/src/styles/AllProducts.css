@@ -1,0 +1,62 @@
+.Product_only {
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  height: 10%;
+  justify-content: center;
+  margin: 1em;
+  width: 35%;
+}
+
+.Product_only p {
+  font-size: 2vh;
+}
+
+.Orders_Button {
+  font-size: 10px;
+  height: 3em;
+  margin: 10px;
+  width: 10em;
+}
+
+.Product_only .Product_value {
+  align-self: flex-start;
+  font-size: 1em;
+  font-weight: 700;
+  padding-left: 15px;
+}
+
+.Product_only button {
+  width: 35%;
+}
+
+.Products_img {
+  height: 60px;
+  width: 60px;
+}
+
+.AllProducts_father {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 14vh 0;
+}
+
+.Product_selectors {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Quantity_button {
+  font-size: 20px;
+  height: 5vh;
+  margin: 10px;
+}
+
+.Quantity_product {
+  font-size: 1em;
+}

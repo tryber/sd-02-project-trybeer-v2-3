@@ -1,0 +1,77 @@
+.logincampo {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  font-size: 25px;
+  left: 368px;
+  line-height: 47px;
+  margin: auto;
+  top: 328px;
+}
+
+.logincampo > input {
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 25px;
+  height: 2em;
+  width: 70vw;
+}
+
+.btn-login-div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+button:disabled {
+  background: rgb(61, 90, 47);
+}
+
+.btn-login {
+  align-items: center;
+  background: rgb(28, 209, 24);
+  font-size: 20px;
+  height: 3em;
+  margin-top: 10px;
+  width: 70vw;
+}
+
+.btn-sem-conta-div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-sem-conta {
+  background: white;
+  box-sizing: border-box;
+  font-size: 20px;
+  height: 3em;
+  left: 554px;
+  margin-top: 10px;
+  text-decoration: none;
+  top: 789px;
+  width: 70vw;
+}
+
+.btn-sem-conta:hover {
+  background: grey;
+  cursor: pointer;
+}
+
+.Login_all {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: center;
+}
+
+.Login_message {
+  bottom: 0;
+  font-size: x-large;
+  font-weight: 700;
+  justify-content: center;
+  position: fixed;
+}
