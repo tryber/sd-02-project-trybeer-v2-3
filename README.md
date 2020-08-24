@@ -1,4 +1,4 @@
-# Boas vindas ao repositório do projeto TryBeer v2!
+# Boas vindas ao repositório do projeto TryBeer v2!!!
 
 Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
 
@@ -63,43 +63,13 @@ O intuito desse app é que uma pessoa possa pedir uma cerveja no aplicativo e ou
 
 3. O projeto deve passar a utilizar o _ORM Sequelize_ ao invés do driver do _MySQL_.
 
-4. O projeto deve respeitar a estrutura proposta pela abordagem _DDD_. Dito isso, ele deve ser composto por três pastas: `application`, `domain` e `infrastructure`. Atente-se para o objetivo de cada pasta/camada do DDD. A estrutura esperada para a sua aplicação é similar a descrita abaixo. Você pode adicionar mais arquivos, se quiser, contanto que respeite a estrutura.
-
-   ```
-   └── application
-   │   ├── user
-   │   │   └── userController.js
-   │   └── ...
-   └── domain
-   │   ├── user.js
-   │   └── ...
-   └── infrastructure
-   │   └── database
-   │   │   └── config
-   │   │   │   └── config.json
-   │   │   └── migrations
-   │   │   │   ├── [timestamp]-create-user-table.js
-   │   │   │   └── ...
-   │   │   └── models
-   │   │   │   ├── index.js
-   │   │   │   ├── User.js
-   │   │   │   └── ...
-   │   │   └── seeders
-   │   │   │   ├── [timestamp]-create-first-user.js
-   │   │   │   └── ...
-   │   └── user
-   │   │   ├── UserMapper.js
-   │   │   └── UserRepository.js
-   │   └── ...
-   ```
-
-5. Crie quantos `seeders` e quantas `migrations` quiser. Porém, lembre-se de criar todas as `migrations` necessárias para que o projeto seja gerado 100% funcional utilizando o banco de dados arquitetado por você. O arquivo `.sql`, contendo as _queries_ de criação/configuração do banco, não será mais necessário, visto que o projeto passará a utilizar `migrations` e `seeders`. Estes devem, portanto, ser removidos.
+4. Crie quantos `seeders` e quantas `migrations` quiser. Porém, lembre-se de criar todas as `migrations` necessárias para que o projeto seja gerado 100% funcional utilizando o banco de dados arquitetado por você. O arquivo `.sql`, contendo as _queries_ de criação/configuração do banco, não será mais necessário, visto que o projeto passará a utilizar `migrations` e `seeders`. Estes devem, portanto, ser removidos.
 
 ### Status do pedido
 
-6. Todo pedido realizado deve ter um status referente ao seu progresso atual.
+5. Todo pedido realizado deve ter um status referente ao seu progresso atual.
 
-7. Os _status_ do pedido devem ser os seguintes:
+6. Os _status_ do pedido devem ser os seguintes:
 
    - `Pendente` logo quando o pedido for criado;
 
@@ -107,33 +77,33 @@ O intuito desse app é que uma pessoa possa pedir uma cerveja no aplicativo e ou
 
    - `Entregue` quando o pedido terminar.
 
-8. O usuário admin deve ter o controle de alterar o status do pedido. Lembre-se de seguir princípio `Open/Closed` de _SOLID_ para está implementação de forma que possam ser acrescentados novos comportamentos e `status` sem impactar os status já existentes.
+7. O usuário admin deve ter o controle de alterar o status do pedido. Lembre-se de seguir princípio `Open/Closed` de _SOLID_ para está implementação de forma que possam ser acrescentados novos comportamentos e `status` sem impactar os status já existentes.
 
-9. Qualquer atualização feita no pedido pelo usuário admin deve se refletir em tempo real para o cliente.
+8. Qualquer atualização feita no pedido pelo usuário admin deve se refletir em tempo real para o cliente.
 
 ### Funcionalidade de chat, visão de cliente
 
-10. Essa funcionalidade só deve existir na **visão de cliente**
+9. Essa funcionalidade só deve existir na **visão de cliente**
 
-11. A plataforma deve ter acessível, no menu lateral, uma funcionalidade de chat denominada `Conversar com a loja`.
+10. A plataforma deve ter acessível, no menu lateral, uma funcionalidade de chat denominada `Conversar com a loja`.
 
     - Um clique no item descrito como `Conversar com a loja` deve levar para uma página de chat.
 
-12. Na página de chat, as mensagens devem aparecer ordenadas com as mais recentes embaixo.
+11. Na página de chat, as mensagens devem aparecer ordenadas com as mais recentes embaixo.
 
     - A página deve mostrar as mensagens enviadas e recebidas, com as mensagens mais recentes mais embaixo.
 
     - A página deve ter um input para envio de nova mensagem ao chat.
 
-13. O nickname de cliente deve ser o email cadastrado.
+12. O nickname de cliente deve ser o email cadastrado.
 
-14. O histórico da conversa deve ser salvo no banco de dados `MondoDB` e aparecer quando a pessoa abre a página.
+13. O histórico da conversa deve ser salvo no banco de dados `MondoDB` e aparecer quando a pessoa abre a página.
 
 ### Funcionalidade de chat, visão de admin
 
-15. Essa funcionalidade só deve existir na **visão de admin**
+14. Essa funcionalidade só deve existir na **visão de admin**
 
-16. A plataforma deve ter acessível, no menu lateral, uma funcionalidade de chats denominada `Conversas`.
+15. A plataforma deve ter acessível, no menu lateral, uma funcionalidade de chats denominada `Conversas`.
 
     - Um clique no botão `Conversas` direciona para uma página que lista todas as conversas da loja.
 
@@ -141,7 +111,7 @@ O intuito desse app é que uma pessoa possa pedir uma cerveja no aplicativo e ou
 
     - Caso não tenham conversas, deve ser exibido o texto "Nenhuma conversa por aqui".
 
-17. Um clique num item da lista de conversas deve exibir na tela o respectivo chat.
+16. Um clique num item da lista de conversas deve exibir na tela o respectivo chat.
 
     - Um clique em um item da lista deve exibir na tela a janela com o chat daquela conversa.
 
@@ -151,9 +121,9 @@ O intuito desse app é que uma pessoa possa pedir uma cerveja no aplicativo e ou
 
     - A página da conversa deve ter um botão de voltar que ao ser clicado redireciona a pessoa a página de listagem de conversas novamente.
 
-18. O histórico de cada conversa deve ser salvo no banco de dados e aparecer quando a pessoa abre a página.
+17. O histórico de cada conversa deve ser salvo no banco de dados e aparecer quando a pessoa abre a página.
 
-19. A lista de conversas deve ser ordenada pela data da última mensagem.
+18. A lista de conversas deve ser ordenada pela data da última mensagem.
 
     - A lista de conversas deve ser ordenada pela data da última mensagem (recebida ou enviada), as mais recentes no topo da lista.
 
@@ -161,9 +131,9 @@ O intuito desse app é que uma pessoa possa pedir uma cerveja no aplicativo e ou
 
 ### Funcionalidade de chat, visão de admin: envio de mensagens em broadcast
 
-20. Essa funcionalidade só deve existir na **visão de admin**
+19. Essa funcionalidade só deve existir na **visão de admin**
 
-21. Na página de chats deve haver um botão identificado com `Nova linha de transmissão`:
+20. Na página de chats deve haver um botão identificado com `Nova linha de transmissão`:
 
     - Ao clicar no botão, deve-se disponibilizar a lista de conversas disponíveis e, ao lado de cada uma, deve haver uma checkbox;
 
@@ -173,7 +143,7 @@ O intuito desse app é que uma pessoa possa pedir uma cerveja no aplicativo e ou
 
 ### Deploy Heroku
 
-22. Faça _scripts bash_ contendo a sequência de comandos necessários para realizar o deploy via Heroku tanto para o **front-end** quanto para o **back-end**. Os scripts devem ter os seguintes nomes:
+21. Faça _scripts bash_ contendo a sequência de comandos necessários para realizar o deploy via Heroku tanto para o **front-end** quanto para o **back-end**. Os scripts devem ter os seguintes nomes:
 
     - `deploy-front-end.sh`;
 
@@ -181,13 +151,13 @@ O intuito desse app é que uma pessoa possa pedir uma cerveja no aplicativo e ou
 
 ### Monitoramento do Back-End
 
-23. Faça um _script bash_ contendo a sequência de comandos necessários para realizar o monitoramento da `API` via _PM2_. O script deve ter o seguinte nome:
+22. Faça um _script bash_ contendo a sequência de comandos necessários para realizar o monitoramento da `API` via _PM2_. O script deve ter o seguinte nome:
 
     - `monitoring-run.sh`.
 
 ### Testes
 
-24. A cobertura de testes unitários do front-end deve ser de, no mínimo, 90%.
+23. A cobertura de testes unitários do front-end deve ser de, no mínimo, 90%.
 
 ---
 
