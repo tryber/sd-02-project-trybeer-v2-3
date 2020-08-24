@@ -1,5 +1,7 @@
-const { getAllUsers, getByEmail, createUserModel, changeName, getOrder,
-  myOrders, orderDetail, allOrders } = require('../models/usersModel');
+const {
+  getAllUsers, getByEmail, createUserModel, changeName, getOrder,
+  myOrders, orderDetail, allOrders,
+} = require('../models/usersModel');
 
 const { adjustOrders, adjustOrder, groupByID } = require('./utils/adjustOrders');
 
@@ -29,7 +31,11 @@ const changeUserName = async (name, email) => {
 const getOrders = async (id) => {
   const completeOrders = await myOrders(id);
   return adjustOrders(completeOrders)
-    .map(({ orderId, day, month, total }) => ({ orderId, day, month, total }));
+    .map(({
+      orderId, day, month, total,
+    }) => ({
+      orderId, day, month, total,
+    }));
 };
 
 const getOrderDetail = async (id, clientID) => {

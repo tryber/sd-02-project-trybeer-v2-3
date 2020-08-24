@@ -4,7 +4,9 @@ const { queryDb } = require('./Utils/customQuery');
 
 const getAllProducts = async (fields) => {
   const products = await getAll('Products', fields);
-  return products.map(([productId, name, price, picture]) => ({ name, productId, price, picture }));
+  return products.map(([productId, name, price, picture]) => ({
+    name, productId, price, picture,
+  }));
 };
 
 const createNewOrder = async (newOrderFields, params) => insertDb('Orders', newOrderFields, params);

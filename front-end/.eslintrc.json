@@ -1,24 +1,42 @@
 {
-    "root": true,
-    "env": {
-        "browser": true,
-        "es2020": true
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb"
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "no-console": "off",
+    "no-alert": "off",
+    "prefer-arrow-callback": "off",
+    "func-names": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
     ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 11,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
+    "react/prefer-stateless-function": 0,
+    "arrow-parens": [
+      2,
+      "always"
     ],
-    "rules": {
-        "react/jsx-filename-extension": "off"
-    }
+    "jsx-a11y/label-has-associated-control": 0
+  }
 }

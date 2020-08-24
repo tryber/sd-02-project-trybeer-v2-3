@@ -23,13 +23,13 @@ const login = async (req, res, next) => {
 
     const token = jwt.sign(payload, JWT_SECRET, jwtConfig);
 
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success',
       token,
       ...payload,
     });
   } catch (error) {
-    next({ code: 'something_wrong', message: 'Something went wrong' });
+    return next({ code: 'something_wrong', message: 'Something went wrong' });
   }
 };
 
@@ -45,9 +45,9 @@ const authUser = async (req, res, next) => {
 
     req.user = user;
 
-    next();
+    return next();
   } catch (err) {
-    next({ code: 'unauthorized', message: 'Invalid Token' });
+    return next({ code: 'unauthorized', message: 'Invalid Token' });
   }
 };
 
