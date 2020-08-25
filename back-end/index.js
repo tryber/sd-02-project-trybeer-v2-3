@@ -4,6 +4,9 @@ const cors = require('cors');
 
 const dotenv = require('dotenv');
 
+const socketIoServer = require('http').createServer();
+const io = require('socket.io')(socketIoServer);
+
 dotenv.config();
 
 const { errorController } = require('./controllers/errorController');
@@ -19,6 +22,12 @@ app.use('/', express.static(`${__dirname}/public`));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+io.on('connection', (socket) => {
+  socket.on('new message', async () => {
+    io.emit('new message', { message: 'oi' });
+  });
+});
+
 app.use('/user', usersRoute);
 app.use('/products', productsRoute);
 app.use('/orders', ordersRoute);
@@ -30,3 +39,6 @@ const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Port: ${port}, Prod`);
 });
+
+socketIoServer.listen(4555);
+console.log('Socket.io ouvindo na porta 4555');
