@@ -16,7 +16,14 @@ const saveDb = async (email, message, fromClient) => {
 
 const getAllMessages = async () => {
   const db = await connectionMongoDb();
-  return db.collection('chatMessages').find().toArray();
+  return db
+    .collection('chatMessages')
+    .aggregate([
+      { $unwind: '$messages' },
+      { $sort: { 'messages.timestamp': -1 } },
+      { $group: { _id: '$email', messages: { $push: '$messages' } } },
+    ])
+    .toArray();
 };
 
 const getMessagesFromId = async (id) => {
