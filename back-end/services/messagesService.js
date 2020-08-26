@@ -6,8 +6,8 @@ const newMessage = async (message, userId, email, role, id) => {
     return { error: true, message: 'Missing fields', code: 'invalid_data' };
   }
   const emailSave = role === 'admin' ? (await userModelFake.getById(userId))[0][3] : email;
-  await messagesModel.saveDb(emailSave, message, email === emailSave, userId, id);
-  return { error: false };
+  const messages = await messagesModel.saveDb(emailSave, message, email === emailSave, userId, id);
+  return messages;
 };
 
 const getAllMessagesFromDb = async () => messagesModel.getAllMessages();

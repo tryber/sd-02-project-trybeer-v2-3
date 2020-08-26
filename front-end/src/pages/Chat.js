@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactLoading from 'react-loading';
-import io from 'socket.io';
+import io from 'socket.io-client';
 import { getClientMessages } from '../services';
 import ChatMessages from '../components/Messages/ChatMessages';
 import * as ls from '../components/Utils/localStorage';
@@ -24,8 +24,15 @@ function Chat() {
       }, 1000)
     });
   }, [])
-  
-  socket.on('update message', ({ messages }) => setMessages(messages));
+
+  socket.on('update message', ({ msg, email }) => {
+    const checkId = id || userId;
+    console.log(msg);
+    console.log(checkId);
+    if (role === 'admin' || checkId === msg[0].id) {
+      setMessages([{ email: email, messages: msg }]);
+    }
+  });
 
   return (
     <section>

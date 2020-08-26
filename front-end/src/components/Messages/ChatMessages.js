@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import io from 'socket.io';
 import { changeToUTF } from '../Utils/dateUtils';
 import { postMessage } from '../../services';
+import io from 'socket.io-client';
 
 const socket = io('http://localhost:4555');
 
 const handleClick = async (message, setInputMessage, token, id) => {
-  await postMessage(token, id, message);
-
+  const { data: { value: { messages, email } } } = await postMessage(token, id, message);
+  socket.emit('new message', { messages, email });
   setInputMessage('');
 }
 
 
 export default function ChatMessages({ messages, role, token }) {
   const [inputMessage, setInputMessage] = useState('');
+
+  console.log(messages);
+
   const { id } = messages[0].messages[0]
   const { email } = messages[0];
 
@@ -32,7 +35,13 @@ export default function ChatMessages({ messages, role, token }) {
         )
       )}
       <input onChange={({ target: { value } }) => setInputMessage(value)} />
-      <button type='button' value={inputMessage} onClick={() => handleClick(inputMessage, setInputMessage, token, id)}>➢</button>
+      <button
+        type='button'
+        value={inputMessage}
+        onClick={() => handleClick(inputMessage, setInputMessage, token, id)}
+      >
+        ➢
+      </button>
     </>
   );
 }

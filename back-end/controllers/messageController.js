@@ -8,7 +8,7 @@ const createMessage = async (req, res, next) => {
   try {
     const messageDB = await messageService.newMessage(message, userId, email, role, id);
     if (messageDB.error) return next({ code: messageDB.code, message: messageDB.message });
-    return res.status(200).json({ status: 'success' });
+    return res.status(200).json(messageDB);
   } catch (error) {
     return next(errorObj);
   }

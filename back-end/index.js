@@ -35,6 +35,17 @@ app.use('/messages', messagesRoute);
 
 app.use(errorController);
 
+io.on('connection', (socket) => {
+  console.log('conectou');
+  socket.on('disconnect', () => {
+    console.log('Client desconectado');
+  });
+
+  socket.on('new message', ({ messages, email }) => {
+    io.emit('update message', { msg: messages, email });
+  });
+});
+
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Port: ${port}, Prod`);

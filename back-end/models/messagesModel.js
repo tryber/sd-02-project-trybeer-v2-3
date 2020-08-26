@@ -4,14 +4,14 @@ const userModelFake = require('./userModelFake');
 const saveDb = async (email, message, fromClient, userId, id) => {
   const adjustedId = userId || id;
   const db = await connectionMongoDb();
-  await db.collection('chatMessages').updateOne(
+  return db.collection('chatMessages').findOneAndUpdate(
     { email },
     {
       $push: {
         messages: { fromClient, content: message, timestamp: Date.now(), id: adjustedId },
       },
     },
-    { upsert: true },
+    { upsert: true, new: true, returnOriginal: false },
   );
 };
 
