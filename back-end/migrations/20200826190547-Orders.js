@@ -9,7 +9,7 @@ module.exports = {
       },
       delivered: {
         allowNull: false,
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.STRING,
       },
       street: {
         allowNull: false,
@@ -19,10 +19,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      order_date: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
       client_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
@@ -30,6 +26,14 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
       },
     }),
 
