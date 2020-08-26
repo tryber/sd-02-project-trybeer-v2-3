@@ -11,6 +11,7 @@ const APICheckout = 'http://localhost:3001/orders/';
 const APIGetDetailsOrder = 'http://localhost:3001/orders/';
 const APIGetAllMessages = 'http://localhost:3001/messages/';
 const APIGetClientMessages = 'http://localhost:3001/messages/';
+const APIPostMessages = 'http://localhost:3001/messages/';
 
 const headers = {
   Accept: '*/*',
@@ -71,3 +72,6 @@ export const getAllMessages = async (token) => axios
 
 export const getClientMessages = async (token, id) => axios
   .get(`${APIGetClientMessages}${id}`, ({ headers: patchHeaders(token) }));
+
+export const postMessage = async (token, id, message) => axios
+  .post(`${APIPostMessages}`, { userId: id, message }, { headers: patchHeaders(token) })

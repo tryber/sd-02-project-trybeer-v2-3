@@ -19,7 +19,7 @@ const login = async (req, res, next) => {
       return next({ code: 'unauthorized', message: 'User not found or wrong password' });
     }
 
-    const { password: _, id: __, ...payload } = user;
+    const { password: _, ...payload } = user;
 
     const token = jwt.sign(payload, JWT_SECRET, jwtConfig);
 

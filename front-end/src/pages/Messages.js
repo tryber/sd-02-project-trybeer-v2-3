@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
-// import io from 'socket.io';
 import * as ls from '../components/Utils/localStorage';
 import { getAllMessages } from '../services';
 import MessagesList from '../components/Messages/messages';
@@ -12,7 +11,6 @@ export default function Messages() {
   const { token } = ls.getItem('user', {});
 
   useEffect(() => {
-    // const socket = io('http://localhost:4555');
     getAllMessages(token).then(({ data: { messages } }) => {
       setTimeout(() => {
         setMessages(messages);
