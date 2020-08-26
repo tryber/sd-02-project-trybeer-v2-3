@@ -4,9 +4,9 @@ const errorObj = { code: 'something_wrong', message: 'Something went wrong' };
 
 const createMessage = async (req, res, next) => {
   const { message, userId } = req.body;
-  const { email, role } = req.user;
+  const { email, role, id } = req.user;
   try {
-    const messageDB = await messageService.newMessage(message, userId, email, role);
+    const messageDB = await messageService.newMessage(message, userId, email, role, id);
     if (messageDB.error) return next({ code: messageDB.code, message: messageDB.message });
     return res.status(200).json({ status: 'success' });
   } catch (error) {
