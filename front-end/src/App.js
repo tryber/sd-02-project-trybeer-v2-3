@@ -13,6 +13,7 @@ import MyOrders from './pages/MyOrders';
 import adminOrders from './pages/adminOrders';
 import adminOrderDetail from './pages/adminOrderDetail';
 import ClientOrderDetail from './pages/ClientOrderDetail';
+import Chat from './pages/Chat';
 import Messages from './pages/Messages';
 import checkout from './pages/checkout';
 import './App.css';
@@ -33,6 +34,7 @@ const App = () => (
       <Route exact path="/admin/orders" component={adminOrders} />
       <Route exact path="/admin/orders/:id" component={adminOrderDetail} />
       <Route exact path="/admin/messages" component={Messages} />
+      <Route exact path="/admin/messages/:id" component={Chat} />
       <Route exact path="/checkout" component={checkout} />
     </Switch>
   </Router>
