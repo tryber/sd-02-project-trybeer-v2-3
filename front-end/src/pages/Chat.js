@@ -12,31 +12,29 @@ function Chat() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   const { id } = useParams();
   const { token, role, id: userId } = ls.getItem('user', {});
 
   useEffect(() => {
-    getClientMessages(token, id || userId).then(({ data: { messages } }) => {
+    getClientMessages(token, id || userId).then(({ data: { messages: msg } }) => {
       setTimeout(() => {
-        setMessages(messages);
+        setMessages(msg);
         setLoading(false);
-      }, 1000)
+      }, 1000);
     });
-  }, [])
+  }, []);
 
   socket.on('update message', ({ msg, email }) => {
     const checkId = id || userId;
-    console.log(msg);
-    console.log(checkId);
-    if (role === 'admin' || checkId === msg[0].id) {
-      setMessages([{ email: email, messages: msg }]);
+    console.log(id === msg[0].id);
+    if (Number(id) === Number(msg[0].id) || checkId === msg[0].id) {
+      setMessages([{ email, messages: msg }]);
     }
   });
 
   return (
     <section>
-      {loading && <ReactLoading type={'spin'} color={'grey'} height={350} width={150} />}
+      {loading && <ReactLoading type="spin" color="grey" height={350} width={150} />}
       {!loading && <ChatMessages messages={messages} role={role} token={token} />}
     </section>
   );

@@ -11,17 +11,17 @@ export default function Messages() {
   const { token } = ls.getItem('user', {});
 
   useEffect(() => {
-    getAllMessages(token).then(({ data: { messages } }) => {
+    getAllMessages(token).then(({ data: { messages: msg } }) => {
       setTimeout(() => {
-        setMessages(messages);
+        setMessages(msg);
         setLoading(false);
-      }, 1000)
+      }, 1000);
     });
   }, [token]);
 
   return (
     <section>
-      {loading && <ReactLoading type={'spin'} color={'grey'} height={350} width={150} />}
+      {loading && <ReactLoading type="spin" color="grey" height={350} width={150} />}
       {!loading && <MessagesList messages={messages} />}
     </section>
   );

@@ -74,4 +74,4 @@ export const getClientMessages = async (token, id) => axios
   .get(`${APIGetClientMessages}${id}`, ({ headers: patchHeaders(token) }));
 
 export const postMessage = async (token, id, message) => axios
-  .post(`${APIPostMessages}`, { userId: id, message }, { headers: patchHeaders(token) })
+  .post(`${APIPostMessages}`, { userId: id, message }, { headers: patchHeaders(token) });
