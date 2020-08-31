@@ -1,10 +1,16 @@
-const { User } = require('../models');
+const { User, Orders } = require('../models');
 
 const getUsers = async () => {
   const users = await User.findAll();
   return users;
 };
 
+const getAllOrders = async () => {
+  const orders = await Orders.findAll();
+  return orders;
+};
+
 module.exports = {
   getUsers,
+  getAllOrders,
 };

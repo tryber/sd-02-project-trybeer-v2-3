@@ -6,6 +6,15 @@ const ProductsModel = (sequelize, DataTypes) => {
   }, {
     timestamps: false,
   });
+
+  Products.associate = (models) => {
+    Products.belongsToMany(models.Orders, {
+      as: 'orders',
+      foreignKey: 'id',
+      through: 'ordersProducts',
+    });
+  };
+
   return Products;
 };
 

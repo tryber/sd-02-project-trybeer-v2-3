@@ -1,6 +1,5 @@
 const OrdersModel = (sequelize, DataTypes) => {
   const Orders = sequelize.define('Orders', {
-    OrderId: DataTypes.INTEGER,
     delivered: DataTypes.STRING,
     street: DataTypes.STRING,
     street_number: DataTypes.STRING,
@@ -8,6 +7,16 @@ const OrdersModel = (sequelize, DataTypes) => {
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   });
+
+  Orders.associate = (models) => {
+    Orders.belongsTo(models.User, { as: 'user', foreignKey: 'id' });
+    Orders.belongsToMany(models.Products, {
+      through: 'ordersProducts',
+      as: 'products',
+      foreignKey: 'id',
+    });
+  };
+
   return Orders;
 };
 
