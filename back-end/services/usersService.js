@@ -5,6 +5,11 @@ const getUsers = async () => {
   return users;
 };
 
+const getUser = async (email) => {
+  const user = await User.findOne({ where: { email } });
+  return user;
+};
+
 const getAllOrders = async () => {
   const orders = await Orders.findAll();
   return orders;
@@ -19,4 +24,5 @@ module.exports = {
   getUsers,
   getAllOrders,
   getAllOrdersProducts,
+  getUser,
 };

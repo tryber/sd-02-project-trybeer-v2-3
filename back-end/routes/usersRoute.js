@@ -7,7 +7,7 @@ const express = require('express');
 
 const { getAllUsers } = require('../controllers/usersController');
 
-// const { login, authUser } = require('../controllers/authenticatorController');
+const { login } = require('../controllers/authenticatorController');
 
 const router = express.Router();
 
@@ -19,9 +19,9 @@ router
   .route('/users')
   .get(getAllUsers);
 
-// router
-//   .route('/login')
-//   .post(login);
+router
+  .route('/login')
+  .post(login);
 
 // router
 //   .route('/register')

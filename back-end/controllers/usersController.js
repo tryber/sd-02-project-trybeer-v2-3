@@ -15,15 +15,6 @@ const getAllUsers = async (_req, res) => {
   });
 };
 
-// const getUser = async (req, res) => {
-//   const { name, email } = req.user;
-//   res.status(200).json({
-//     status: 'success',
-//     name,
-//     email,
-//   });
-// };
-
 // const register = async (req, res, next) => {
 //   const {
 //     name,
