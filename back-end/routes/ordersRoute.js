@@ -2,7 +2,7 @@ const express = require('express');
 // const { adminOrderDetail, orderDetails, allOrders } = require('../controllers/usersController');
 const { allOrders, allOrdersProducts } = require('../controllers/usersController');
 // const { markAsDelivered, createOrder } = require('../controllers/productsController');
-// const { authUser } = require('../controllers/authenticatorController');
+const { authUser } = require('../controllers/authenticatorController');
 
 const router = express.Router();
 
@@ -12,7 +12,7 @@ const router = express.Router();
 
 router
   .route('/admin')
-  .get(allOrders);
+  .get(authUser, allOrders);
 
 router
   .route('/admin/detailed')

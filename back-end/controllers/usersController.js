@@ -68,9 +68,9 @@ const getAllUsers = async (_req, res) => {
 //   });
 // };
 
-const allOrders = async (req, res, _next) => {
-  // const { role } = req.user;
-  // if (role !== 'admin') return next({ code: 'unauthorized', message: 'User not alowed' });
+const allOrders = async (req, res, next) => {
+  const { role } = req.user;
+  if (role !== 'admin') return next({ code: 'unauthorized', message: 'User not alowed' });
   const orders = await getAllOrders();
   return res.status(200).json({
     status: 'success',
