@@ -16,9 +16,9 @@
 
 .chat-section button {
   background: white;
+  border: none;
   color: rgb(24, 83, 0);
   cursor: pointer;
-  border: none;
   font-size: xx-large;
   padding: 10px;
   width: 20%;
