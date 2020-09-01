@@ -1,4 +1,4 @@
-const { User, Orders } = require('../models');
+const { User, Orders, OrderProducts } = require('../models');
 
 const getUsers = async () => {
   const users = await User.findAll();
@@ -10,7 +10,13 @@ const getAllOrders = async () => {
   return orders;
 };
 
+const getAllOrdersProducts = async () => {
+  const orders = await OrderProducts.findAll();
+  return orders;
+};
+
 module.exports = {
   getUsers,
   getAllOrders,
+  getAllOrdersProducts,
 };

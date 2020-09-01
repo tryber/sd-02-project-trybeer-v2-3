@@ -1,23 +1,25 @@
-const OrderProducts = (sequelize, DataTypes) => {
-  const orderProducts = sequelize.define('Order_Products', {
+const OrderProductsModel = (sequelize, DataTypes) => {
+  const OrderProducts = sequelize.define('OrderProducts', {
     product_id: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER,
     order_id: DataTypes.INTEGER,
+  }, {
+    timestamps: false,
   });
 
-  orderProducts.associate = (models) => {
-    orderProducts.belongsToMany(models.Orders, {
+  OrderProducts.associate = (models) => {
+    OrderProducts.belongsToMany(models.Orders, {
       as: 'orders',
       foreignKey: 'id',
       through: 'ordersProducts',
     });
-    orderProducts.belongsToMany(models.Products, {
+    OrderProducts.belongsToMany(models.Products, {
       as: 'products',
       foreignKey: 'id',
       through: 'ordersProducts',
     });
   };
 
-  return orderProducts;
+  return OrderProducts;
 };
-module.exports = OrderProducts;
+module.exports = OrderProductsModel;

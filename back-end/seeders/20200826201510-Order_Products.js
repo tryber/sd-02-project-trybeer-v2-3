@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface) =>
-    queryInterface.bulkInsert('Order_Products', [
+    queryInterface.bulkInsert('OrderProducts', [
       {
         id: 1,
         product_id: 1,

@@ -3,7 +3,7 @@
 //   getOrderDetail,
 // } = require('../services/usersService');
 
-const { getUsers, getAllOrders } = require('../services/usersService');
+const { getUsers, getAllOrders, getAllOrdersProducts } = require('../services/usersService');
 
 // const { validationFunc } = require('./utils/schemaValidator');
 
@@ -87,6 +87,16 @@ const allOrders = async (req, res, _next) => {
   });
 };
 
+const allOrdersProducts = async (req, res, _next) => {
+  // const { role } = req.user;
+  // if (role !== 'admin') return next({ code: 'unauthorized', message: 'User not alowed' });
+  const orders = await getAllOrdersProducts();
+  return res.status(200).json({
+    status: 'success',
+    orders,
+  });
+};
+
 // const adminOrderDetail = async (req, res, next) => {
 //   const { role } = req.user;
 //   const { id } = req.params;
@@ -109,4 +119,5 @@ module.exports = {
   // orderDetails,
   allOrders,
   // adminOrderDetail,
+  allOrdersProducts,
 };
