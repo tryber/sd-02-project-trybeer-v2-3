@@ -35,6 +35,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
+      total: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+      },
     }),
 
   down: async (queryInterface) => queryInterface.dropTable('Orders'),

@@ -30,7 +30,8 @@ const changeUserName = async (name, email) => {
   );
 };
 
-const userOrders = async (id) => Orders.findAll({ where: { id } });
+const userOrders = async (id) =>
+  Orders.findAll({ where: { id } });
 
 module.exports = {
   getUsers,

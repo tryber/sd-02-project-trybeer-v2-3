@@ -8,6 +8,7 @@ module.exports = {
         client_id: 2,
         createdAt: new Date(),
         updatedAt: new Date(),
+        total: 21.86,
       },
       {
         delivered: 'Preparando',
@@ -16,6 +17,7 @@ module.exports = {
         client_id: 3,
         createdAt: new Date(),
         updatedAt: new Date(),
+        total: 15.39,
       },
       {
         delivered: 'Entregue',
@@ -24,6 +26,7 @@ module.exports = {
         client_id: 4,
         createdAt: new Date(),
         updatedAt: new Date(),
+        total: 10.98,
       },
     ], {}),
 

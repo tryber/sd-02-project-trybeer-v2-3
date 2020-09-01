@@ -6,6 +6,7 @@ const OrdersModel = (sequelize, DataTypes) => {
     client_id: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
+    total: DataTypes.FLOAT,
   });
 
   Orders.associate = (models) => {
