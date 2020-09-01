@@ -20,7 +20,7 @@ export default function ChatMessages({ messages, role, token }) {
   const { setPage } = useContext(Trybeer);
   const [inputMessage, setInputMessage] = useState('');
   const isAdmin = role === 'admin';
-  
+
   useEffect(() => {
     setPage('Chat da Loja');
   }, [setPage]);
@@ -41,13 +41,15 @@ export default function ChatMessages({ messages, role, token }) {
       {!isAdmin && <Header />}
       {!isAdmin && <Sidebar />}
       {isAdmin && <AdminSidebar />}
-      {role === 'admin' && <h2>{`Conversando com ${email}`}</h2>}
-      <section className="chat-messages-list">
+      {role === 'admin' && <h2 className="chat-title">{`Conversando com ${email}`}</h2>}
+      <section className={role === 'admin' ? 'chat-messages-list-admin' : 'chat-messages-list'}>
         {messages.length && messagesArray[0].map(({ fromClient, timestamp, content }) => (
-          <div className="chat-messages" key={timestamp}>
-            <div>{fromClient ? email : 'Loja'}</div>
-            <div>{changeToUTF(timestamp)}</div>
+          <div className={!fromClient ? 'chat-messages-left' : 'chat-messages-right'} key={timestamp}>
+            <div style={{ color: fromClient ? 'green' : 'indigo', fontSize: '0.9rem', fontWeight: '700' }}>
+              {fromClient ? email : 'Loja'}
+            </div>
             <div>{content}</div>
+            <div style={{ color: 'gray', fontSize: '0.9rem' }}>{changeToUTF(timestamp)}</div>
           </div>
         ))}
       </section>

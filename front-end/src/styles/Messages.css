@@ -1,0 +1,12 @@
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 28%;
+  width: 40%;
+}
+
+.messages-container button {
+  background: none;
+  cursor: pointer;
+  margin: 1rem;
+}
