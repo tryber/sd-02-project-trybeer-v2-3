@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 import { getClientMessages } from '../services';
 import ChatMessages from '../components/Messages/ChatMessages';
 import * as ls from '../components/Utils/localStorage';
+import '../styles/Chat.css';
 
 const socket = io('http://localhost:4555');
 
@@ -26,7 +27,6 @@ function Chat() {
 
   socket.on('update message', ({ msg, email }) => {
     const checkId = id || userId;
-    console.log(id === msg[0].id);
     if (Number(id) === Number(msg[0].id) || checkId === msg[0].id) {
       setMessages([{ email, messages: msg }]);
     }

@@ -9,13 +9,13 @@ export default function MessageList(message) {
     <div>
       <div>Conversas</div>
       <div className="messages-container">
-        {messages.map(({ _id: id, messages: msg }) => (
+        {messages.sort((a, b) => b - a).map(({ _id: email, messages: msg }) => (
           <button
             type="button"
-            key={id}
+            key={email}
             onClick={() => history.push(`/admin/messages/${msg[0].id}`)}
           >
-            <p>{id}</p>
+            <p>{email}</p>
             <p>{`Última mensagem: ${changeToUTF(msg[0].timestamp)}`}</p>
           </button>
         ))}

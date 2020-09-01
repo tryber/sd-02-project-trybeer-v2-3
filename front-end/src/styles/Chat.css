@@ -1,0 +1,69 @@
+.chat-section {
+  background: black;
+  display: flex;
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.chat-section input {
+  border: 0;
+  padding: 10px;
+  width: 80%;
+  margin-right: 0.5%;
+}
+
+.chat-section button {
+  width: 20%;
+  background: white;
+  color: rgb(24, 83, 0);
+  border: none;
+  font-size: xx-large;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.chat-section button:disabled {
+  color: rgb(175, 175, 175);
+}
+
+.chat-messages {
+  margin-bottom: 1rem;
+  overflow: scroll;
+}
+
+.chat-messages-list {
+  margin: 5rem 0;
+}
+
+.chat-section-admin {
+  background: black;
+  display: flex;
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 74.5%;
+}
+
+.chat-section-admin input {
+  border: 0;
+  padding: 10px;
+  width: 80%;
+  margin-right: 0.5%;
+}
+
+.chat-section-admin button {
+  width: 20%;
+  background: white;
+  color: rgb(24, 83, 0);
+  border: none;
+  font-size: xx-large;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.chat-section-admin button:disabled {
+  color: rgb(175, 175, 175);
+}

@@ -5,6 +5,7 @@ import ButtonOrders from './Orders';
 import Trybeer from '../../context';
 import ButtonExit from './Exit';
 import '../../styles/Sidebar.css';
+import ButtonChat from './Chat';
 
 const Sidebar = () => {
   const { open, setOpen } = useContext(Trybeer);
@@ -20,6 +21,7 @@ const Sidebar = () => {
           <ButtonProducts />
           <ButtonOrders />
           <ButtonProfile />
+          <ButtonChat />
         </div>
         <ButtonExit />
       </div>
