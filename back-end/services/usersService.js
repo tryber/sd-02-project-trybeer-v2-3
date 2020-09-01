@@ -20,9 +20,21 @@ const getAllOrdersProducts = async () => {
   return orders;
 };
 
+const createUser = async (objUser) => User.create(objUser);
+
+const changeUserName = async (name, email) => {
+  console.log(name, email);
+  User.update(
+    { name },
+    { where: { email } },
+  );
+};
+
 module.exports = {
   getUsers,
   getAllOrders,
   getAllOrdersProducts,
   getUser,
+  createUser,
+  changeUserName,
 };

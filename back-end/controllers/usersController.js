@@ -3,9 +3,9 @@
 //   getOrderDetail,
 // } = require('../services/usersService');
 
-const { getUsers, getAllOrders, getAllOrdersProducts } = require('../services/usersService');
+const { getUsers, getAllOrders, getAllOrdersProducts, createUser, changeUserName } = require('../services/usersService');
 
-// const { validationFunc } = require('./utils/schemaValidator');
+const { validationFunc } = require('./utils/schemaValidator');
 
 const getAllUsers = async (_req, res) => {
   const users = await getUsers();
@@ -15,37 +15,38 @@ const getAllUsers = async (_req, res) => {
   });
 };
 
-// const register = async (req, res, next) => {
-//   const {
-//     name,
-//     email,
-//     password,
-//     admin,
-//   } = req.body;
-//   const { error, message } = validationFunc({
-//     name, email, password, admin,
-//   }, 'user');
-//   if (error) return next({ code: 'invalid_data', message });
+const register = async (req, _res, next) => {
+  const { name, email, password, admin } = req.body;
+  const { error, message } = validationFunc({
+    name, email, password, admin,
+  }, 'user');
+  if (error) return next({ code: 'invalid_data', message });
+  const role = admin ? 'admin' : 'client';
+  try {
+    await createUser({ name, email, password, role });
 
-//   const user = await createUser(name, email, password, admin);
-//   if (user.error) return next({ code: 'conflict', message: user.message });
+    return next();
+  } catch (err) {
+    next({ code: 'conflict', message: 'Usuário já cadastrado' });
+  }
+};
 
-//   return next();
-// };
+const changeName = async (req, res, next) => {
+  const { name } = req.body;
+  const { email } = req.user;
+  const { error, message } = validationFunc({ name, email }, 'change_name');
+  if (error) return next({ code: 'invalid_data', message });
 
-// const changeName = async (req, res, next) => {
-//   const { name } = req.body;
-//   const { email } = req.user;
-//   const { error, message } = validationFunc({ name, email }, 'change_name');
-//   if (error) return next({ code: 'invalid_data', message });
+  try {
+    await changeUserName(name, email);
 
-//   const user = await changeUserName(name, email);
-//   if (user.error) return next({ code: 'not_found', message: 'Email not found' });
-
-//   return res.status(201).json({
-//     status: 'success',
-//   });
-// };
+    return res.status(201).json({
+      status: 'success',
+    });
+  } catch (err) {
+    next({ code: 'not_found', message: 'Email not found' });
+  }
+};
 
 // const myOrders = async (req, res) => {
 //   const { id } = req.user;
@@ -103,8 +104,8 @@ const allOrdersProducts = async (req, res, _next) => {
 
 module.exports = {
   getAllUsers,
-  // register,
-  // changeName,
+  register,
+  changeName,
   // myOrders,
   // getUser,
   // orderDetails,
