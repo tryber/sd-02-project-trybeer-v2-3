@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, {
+  useState, useEffect, useRef, useContext,
+} from 'react';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
 import { changeToUTF } from '../Utils/dateUtils';
@@ -53,7 +55,7 @@ export default function ChatMessages({ messages, role, token }) {
           </div>
         ))}
       </section>
-      <div id={'el'} ref={el} />
+      <div id="el" ref={el} />
       <section className={role === 'admin' ? 'chat-section-admin' : 'chat-section'}>
         <input className="chat-input" value={inputMessage} onChange={({ target: { value } }) => setInputMessage(value)} />
         <button
@@ -63,14 +65,14 @@ export default function ChatMessages({ messages, role, token }) {
           className="chat-button"
         >
           ➢
-      </button>
+        </button>
       </section>
     </section>
   );
 }
 
 ChatMessages.propTypes = {
-  messages: PropTypes.instanceOf(Array),
+  messages: PropTypes.instanceOf(Array).isRequired,
   role: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
 };

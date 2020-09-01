@@ -5,13 +5,11 @@ import AdminSidebar from '../Sidebar/AdminSidebar';
 import '../../styles/Messages.css';
 
 // solução retirada de: https://www.javascripttutorial.net/array/javascript-sort-an-array-of-objects/
-const sortMessages = (messages) => {
-  return messages.sort((a, b) => {
-    const dateA = new Date(a.messages[0].timestamp);
-    const dateB = new Date(b.messages[0].timestamp);
-    return dateB - dateA;
-  });
-}
+const sortMessages = (messages) => messages.sort((a, b) => {
+  const dateA = new Date(a.messages[0].timestamp);
+  const dateB = new Date(b.messages[0].timestamp);
+  return dateB - dateA;
+});
 
 export default function MessageList(message) {
   const { messages } = message;
@@ -33,8 +31,7 @@ export default function MessageList(message) {
               <p>{`Última mensagem: ${changeToUTF(msg[0].timestamp)}`}</p>
             </button>
           ))
-          : <h2>Nenhuma conversa por aqui.</h2>
-        }
+          : <h2>Nenhuma conversa por aqui.</h2>}
       </div>
     </div>
   );
