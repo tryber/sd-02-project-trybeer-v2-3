@@ -24,6 +24,11 @@ app.use('/orders', ordersRoute);
 
 app.use(errorController);
 
+app.use('*', (_req, res) => res.status(404).json({
+  message: 'route not found',
+  code: 'not_found',
+}));
+
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Port: ${port}, Prod`);

@@ -30,11 +30,14 @@ const changeUserName = async (name, email) => {
   );
 };
 
+const userOrders = async (id) => Orders.findAll({ where: { id } });
+
 module.exports = {
   getUsers,
   getAllOrders,
   getAllOrdersProducts,
   getUser,
+  userOrders,
   createUser,
   changeUserName,
 };

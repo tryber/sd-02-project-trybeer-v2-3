@@ -3,7 +3,7 @@
 //   getOrderDetail,
 // } = require('../services/usersService');
 
-const { getUsers, getAllOrders, getAllOrdersProducts, createUser, changeUserName } = require('../services/usersService');
+const { getUsers, getAllOrders, getAllOrdersProducts, createUser, changeUserName, userOrders } = require('../services/usersService');
 
 const { validationFunc } = require('./utils/schemaValidator');
 
@@ -48,14 +48,14 @@ const changeName = async (req, res, next) => {
   }
 };
 
-// const myOrders = async (req, res) => {
-//   const { id } = req.user;
-//   const orders = await getOrders(id);
-//   res.status(200).json({
-//     status: 'success',
-//     orders,
-//   });
-// };
+const myOrders = async (req, res) => {
+  const { id } = req.user;
+  const orders = await userOrders(id);
+  res.status(200).json({
+    status: 'success',
+    orders,
+  });
+};
 
 // const orderDetails = async (req, res, next) => {
 //   const { id } = req.params;
@@ -106,7 +106,7 @@ module.exports = {
   getAllUsers,
   register,
   changeName,
-  // myOrders,
+  myOrders,
   // getUser,
   // orderDetails,
   allOrders,
