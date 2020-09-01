@@ -30,8 +30,15 @@ const changeUserName = async (name, email) => {
   );
 };
 
-const userOrders = async (id) =>
-  Orders.findAll({ where: { id } });
+const userOrders = async (number) => {
+  const allOrders = await Orders.findAll({ where: { id: number }, attributes: ['id', 'total', 'createdAt'] });
+  return allOrders.map(({ id, total, createdAt }) => ({
+    orderId: id,
+    total,
+    day: createdAt.getDate(),
+    month: createdAt.getMonth() + 1,
+  }));
+};
 
 module.exports = {
   getUsers,
