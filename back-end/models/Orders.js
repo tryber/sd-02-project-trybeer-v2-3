@@ -12,7 +12,7 @@ const OrdersModel = (sequelize, DataTypes) => {
   Orders.associate = (models) => {
     Orders.belongsTo(models.User, { as: 'user', foreignKey: 'id' });
     Orders.belongsToMany(models.Products, {
-      through: 'ordersProducts',
+      through: 'OrderProducts',
       as: 'products',
       foreignKey: 'id',
     });

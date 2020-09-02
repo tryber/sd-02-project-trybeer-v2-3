@@ -1,4 +1,4 @@
-const { User, Orders, OrderProducts } = require('../models');
+const { User, Orders, OrderProducts, Products } = require('../models');
 
 const getUsers = async () => {
   const users = await User.findAll();
@@ -40,12 +40,45 @@ const userOrders = async (number) => {
   }));
 };
 
+const getOrderDetail = async (orderId) => {
+  const orderDetail = await OrderProducts.findAll({
+    where: { order_id: orderId },
+    raw: true,
+    include: [{
+      model: Products,
+      required: true,
+      as: 'products',
+      attributes: ['product_name', 'product_price'],
+    }],
+  }).then((allOrders) =>
+    allOrders
+      .map((order) => ({
+        name: order['products.product_name'],
+        qty: order.quantity,
+        price: order['products.product_price'],
+        total: order['products.product_price'] * order.quantity,
+      })));
+
+  const { dataValues: { createdAt } } = await Orders.findOne({
+    where: { id: orderId },
+    attributes: ['createdAt'],
+  });
+  const newDate = {
+    orderId,
+    day: createdAt.getDate(),
+    month: createdAt.getMonth() + 1,
+  };
+
+  return { ...newDate, products: orderDetail };
+};
+
 module.exports = {
-  getUsers,
-  getAllOrders,
   getAllOrdersProducts,
-  getUser,
-  userOrders,
-  createUser,
   changeUserName,
+  getOrderDetail,
+  getAllOrders,
+  createUser,
+  userOrders,
+  getUsers,
+  getUser,
 };
