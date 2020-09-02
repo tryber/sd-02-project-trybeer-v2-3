@@ -1,33 +1,39 @@
-const {
-  getAllProducts, createNewOrder, addToOrder, markDelivered,
-} = require('../models/productsModel');
+const { Products, Orders, OrderProducts } = require('../models');
 
-const allFields = ['product_id', 'product_name', 'product_price', 'picture'];
-const newOrderFields = ['delivered', 'street', 'street_number', 'order_date', 'client_id'];
-const addProductsFields = ['product_id', 'quantity', 'order_id'];
-
-const getProducts = async () => getAllProducts(allFields);
-
-const newOrder = async (id, street, streetNumber) => {
-  const date = new Date();
-  const yyyymmdd = `${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`;
-  const params = [0, street, streetNumber, yyyymmdd, id];
-  return createNewOrder(newOrderFields, params);
+const getProducts = async () => {
+  const products = await Products.findAll();
+  return products;
 };
 
-const addProducts = async (products, orderID) => {
-  Promise.all(products.map(({ id, quantity }) => {
-    const params = [id, quantity, orderID];
-    return addToOrder(addProductsFields, params);
-  }));
+const delivered = async (id, status) => {
+  Orders.update(
+    { delivered: status },
+    { where: { id } },
+  );
 };
 
-const delivered = async (id) => markDelivered(id);
+const newOrder = async (id, street, streetNumber, products) => Orders.create({
+  client_id: id,
+  street,
+  street_number: streetNumber,
+  createdAt: Date.now(),
+  updatedAt: Date.now(),
+  delivered: 'Pendente',
+  total: products.reduce((acc, cur) => acc + (cur.price * cur.quantity), 0),
+});
+
+const addProducts = async (products, dataValues) => {
+  console.log(products, dataValues);
+  Promise.all(products.forEach(({ id, quantity }) => OrderProducts.create({
+    product_id: id,
+    quantity,
+    order_id: dataValues.id,
+  })));
+};
 
 module.exports = {
   getProducts,
+  delivered,
   newOrder,
   addProducts,
-  addToOrder,
-  delivered,
 };

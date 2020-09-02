@@ -13,13 +13,14 @@ const login = async (req, res, next) => {
     const { email, password } = req.body;
     if (!email || !password) return next({ code: 'invalid_data', message: 'Missing fields' });
 
-    const user = await getUser(email);
+    const { dataValues } = await getUser(email);
 
-    if (!user || user.password !== password) {
+    if (!dataValues || dataValues.password !== Number(password)) {
+      console.log('oi');
       return next({ code: 'unauthorized', message: 'User not found or wrong password' });
     }
 
-    const { password: _, ...payload } = user;
+    const { password: _, id: __, ...payload } = dataValues;
 
     const token = jwt.sign(payload, JWT_SECRET, jwtConfig);
 

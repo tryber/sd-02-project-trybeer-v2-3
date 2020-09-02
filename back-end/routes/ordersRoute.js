@@ -1,5 +1,7 @@
 const express = require('express');
-const { adminOrderDetail, orderDetails, allOrders } = require('../controllers/usersController');
+
+const { allOrders, orderDetails, adminOrderDetail } = require('../controllers/usersController');
+
 const { markAsDelivered, createOrder } = require('../controllers/productsController');
 const { authUser } = require('../controllers/authenticatorController');
 

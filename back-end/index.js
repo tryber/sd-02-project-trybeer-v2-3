@@ -16,6 +16,7 @@ const ordersRoute = require('./routes/ordersRoute');
 const messagesRoute = require('./routes/messagesRoute');
 
 const app = express();
+
 app.use(express.json());
 app.use(cors({ allowedHeaders: '*' }));
 app.use('/', express.static(`${__dirname}/public`));
@@ -46,7 +47,13 @@ io.on('connection', (socket) => {
   });
 });
 
+app.use('*', (_req, res) => res.status(404).json({
+  message: 'route not found',
+  code: 'not_found',
+}));
+
 const port = process.env.PORT;
+
 app.listen(port, () => {
   console.log(`Port: ${port}, Prod`);
 });

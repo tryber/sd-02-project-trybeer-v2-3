@@ -1,6 +1,6 @@
-const {
-  getUsers, createUser, changeUserName, getOrders, getAllOrders, getOrderComplete, getOrderDetail,
-} = require('../services/usersService');
+const { getUsers, getAllOrders, createUser,
+  changeUserName, userOrders, getOrderDetail, getOrderComplete } = require('../services/usersService');
+
 const { validationFunc } = require('./utils/schemaValidator');
 
 const getAllUsers = async (_req, res) => {
@@ -11,31 +11,20 @@ const getAllUsers = async (_req, res) => {
   });
 };
 
-const getUser = async (req, res) => {
-  const { name, email } = req.user;
-  res.status(200).json({
-    status: 'success',
-    name,
-    email,
-  });
-};
-
-const register = async (req, res, next) => {
-  const {
-    name,
-    email,
-    password,
-    admin,
-  } = req.body;
+const register = async (req, _res, next) => {
+  const { name, email, password, admin } = req.body;
   const { error, message } = validationFunc({
     name, email, password, admin,
   }, 'user');
   if (error) return next({ code: 'invalid_data', message });
+  const role = admin ? 'admin' : 'client';
+  try {
+    await createUser({ name, email, password, role });
 
-  const user = await createUser(name, email, password, admin);
-  if (user.error) return next({ code: 'conflict', message: user.message });
-
-  return next();
+    return next();
+  } catch (err) {
+    next({ code: 'conflict', message: 'Usuário já cadastrado' });
+  }
 };
 
 const changeName = async (req, res, next) => {
@@ -44,17 +33,20 @@ const changeName = async (req, res, next) => {
   const { error, message } = validationFunc({ name, email }, 'change_name');
   if (error) return next({ code: 'invalid_data', message });
 
-  const user = await changeUserName(name, email);
-  if (user.error) return next({ code: 'not_found', message: 'Email not found' });
+  try {
+    await changeUserName(name, email);
 
-  return res.status(201).json({
-    status: 'success',
-  });
+    return res.status(201).json({
+      status: 'success',
+    });
+  } catch (err) {
+    next({ code: 'not_found', message: 'Email not found' });
+  }
 };
 
 const myOrders = async (req, res) => {
   const { id } = req.user;
-  const orders = await getOrders(id);
+  const orders = await userOrders(id);
   res.status(200).json({
     status: 'success',
     orders,
@@ -101,7 +93,7 @@ module.exports = {
   register,
   changeName,
   myOrders,
-  getUser,
+  // getUser,
   orderDetails,
   allOrders,
   adminOrderDetail,

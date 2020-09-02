@@ -1,68 +1,99 @@
-const {
-  getAllUsers, getByEmail, createUserModel, changeName, getOrder,
-  myOrders, orderDetail, allOrders,
-} = require('../models/usersModel');
+const { User, Orders, OrderProducts, Products } = require('../models');
 
-const { adjustOrders, adjustOrder, groupByID } = require('./utils/adjustOrders');
-
-const allFields = ['name', 'password', 'id', 'email', 'role'];
-const normalFields = ['name', 'email', 'password', 'role'];
-
-const getUsers = async () => getAllUsers(allFields);
-
-const getUser = async (email) => getByEmail(email, allFields);
-
-const createUser = async (name, email, password, admin) => {
-  const hasUser = await getByEmail(email, allFields);
-  if (hasUser.name) return { error: true, message: 'User already exists' };
-  const role = admin ? 'admin' : 'client';
-  const params = [name, email, password, role];
-  await createUserModel(normalFields, params);
-  return getByEmail(email, allFields);
+const getUsers = async () => {
+  const users = await User.findAll();
+  return users;
 };
 
-const changeUserName = async (name, email) => {
-  const hasUser = await getByEmail(email, allFields);
-  if (!hasUser.name) return { error: true };
-  await changeName(name, email);
-  return {};
-};
-
-const getOrders = async (id) => {
-  const completeOrders = await myOrders(id);
-  return adjustOrders(completeOrders)
-    .map(({
-      orderId, day, month, total,
-    }) => ({
-      orderId, day, month, total,
-    }));
-};
-
-const getOrderDetail = async (id, clientID) => {
-  const order = await orderDetail(id, clientID);
-  if (!order.length) return { error: true };
-  const { deliver, ...orderDetailed } = adjustOrder(order);
-  return orderDetailed;
+const getUser = async (email) => {
+  const user = await User.findOne({ where: { email } });
+  return user;
 };
 
 const getAllOrders = async () => {
-  const ordersAdmin = await allOrders();
-  return groupByID(ordersAdmin);
+  const orders = await Orders.findAll();
+  return orders;
 };
 
-const getOrderComplete = async (id) => {
-  const order = await getOrder(id);
-  if (!order.length) return { error: true };
-  return groupByID(order);
+const createUser = async (objUser) => User.create(objUser);
+
+const changeUserName = async (name, email) => {
+  console.log(name, email);
+  User.update(
+    { name },
+    { where: { email } },
+  );
+};
+
+const userOrders = async (number) => {
+  const allOrders = await Orders.findAll({ where: { id: number }, attributes: ['id', 'total', 'createdAt'] });
+  return allOrders.map(({ id, total, createdAt }) => ({
+    orderId: id,
+    total,
+    day: createdAt.getDate(),
+    month: createdAt.getMonth() + 1,
+  }));
+};
+
+const getTheOrder = async (orderId) => {
+  const orderDetail = await OrderProducts.findAll({
+    where: { order_id: orderId },
+    raw: true,
+    include: [{
+      model: Products,
+      required: true,
+      as: 'products',
+      attributes: ['product_name', 'product_price'],
+    }],
+  }).then((allOrders) =>
+    allOrders
+      .map((order) => ({
+        name: order['products.product_name'],
+        qty: order.quantity,
+        price: order['products.product_price'],
+        total: order['products.product_price'] * order.quantity,
+      })));
+
+  const { dataValues } = await Orders.findOne({
+    where: { id: orderId },
+    attributes: ['createdAt', 'delivered', 'street', 'street_number'],
+  });
+
+  return { orderDetail, dataValues };
+};
+
+const getOrderDetail = async (orderId) => {
+  const { orderDetail, dataValues } = await getTheOrder(orderId);
+  const newDate = {
+    orderId,
+    day: dataValues.createdAt.getDate(),
+    month: dataValues.createdAt.getMonth() + 1,
+  };
+
+  return { ...newDate, products: orderDetail };
+};
+
+const getOrderComplete = async (orderId) => {
+  const { orderDetail, dataValues } = await getTheOrder(orderId);
+  const newDate = {
+    orderId,
+    day: dataValues.createdAt.getDate(),
+    month: dataValues.createdAt.getMonth() + 1,
+    address: `${dataValues.street}, ${dataValues.street_number}`,
+    delivered: dataValues.delivered,
+    total: orderDetail.reduce((acc, cur) => acc + cur.total, 0),
+  };
+
+  return { ...newDate, products: orderDetail };
 };
 
 module.exports = {
-  getUsers,
-  getUser,
-  createUser,
   changeUserName,
-  getOrders,
   getOrderDetail,
   getAllOrders,
+  createUser,
+  userOrders,
+  getUsers,
+  getUser,
   getOrderComplete,
 };
