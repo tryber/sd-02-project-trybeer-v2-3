@@ -48,11 +48,12 @@ export default function ChatMessages({ messages, role, token }) {
       {!isAdmin && <Sidebar />}
       {isAdmin && <AdminSidebar />}
       {role === 'admin'
-        && <h2 className="chat-title">
-          <button className="back-button" onClick={() => history.push('/admin/messages')}> ⤶ </button>
-          {`Conversando com ${email}`}
-        </h2>
-      }
+        && (
+          <h2 className="chat-title">
+            <button type="button" className="back-button" onClick={() => history.push('/admin/messages')}> ⤶ </button>
+            {`Conversando com ${email}`}
+          </h2>
+        )}
       <section className={role === 'admin' ? 'chat-messages-list-admin' : 'chat-messages-list'}>
         {messages.length && messagesArray[0].map(({ fromClient, timestamp, content }) => (
           <div className={!fromClient ? 'chat-messages-left' : 'chat-messages-right'} key={timestamp}>
