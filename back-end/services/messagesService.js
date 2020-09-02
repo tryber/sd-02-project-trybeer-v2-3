@@ -1,5 +1,5 @@
-const messagesModel = require('../models/messagesModel');
-const userModelFake = require('../models/userModelFake');
+const messagesModel = require('../models/utils/messagesModel');
+const userModelFake = require('../models/utils/userModelFake');
 
 const newMessage = async (message, userId, email, role, id) => {
   if (!message || (role === 'admin' && !userId)) {
