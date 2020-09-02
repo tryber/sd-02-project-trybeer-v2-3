@@ -2,6 +2,7 @@ import React from 'react';
 import AdminOrders from './AdminOrders';
 import ButtonProfile from './Profile';
 import ButtonExit from './Exit';
+import ButtonChat from './Chat';
 import '../../styles/Sidebar.css';
 
 const AdminSidebar = () => (
@@ -10,6 +11,7 @@ const AdminSidebar = () => (
       <p>Trybeer</p>
       <AdminOrders />
       <ButtonProfile />
+      <ButtonChat />
     </div>
     <ButtonExit />
   </div>

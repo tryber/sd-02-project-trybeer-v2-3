@@ -47,6 +47,7 @@ const loginClick = async (email, senha, history, setServerError) => {
   await postLogin({ email, password: senha })
     .then(({ data }) => {
       localStorage.setItem('user', JSON.stringify({
+        id: data.id,
         name: data.name,
         email: data.email,
         token: data.token,
