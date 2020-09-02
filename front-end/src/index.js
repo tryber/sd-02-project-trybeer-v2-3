@@ -8,5 +8,5 @@ ReactDOM.render(
   <ProviderTrybeer>
     <App />
   </ProviderTrybeer>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
