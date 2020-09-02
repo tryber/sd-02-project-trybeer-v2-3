@@ -81,3 +81,10 @@
 .chat-title {
   margin: 2rem 28% 5rem;
 }
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+}
