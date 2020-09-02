@@ -15,11 +15,6 @@ const getAllOrders = async () => {
   return orders;
 };
 
-const getAllOrdersProducts = async () => {
-  const orders = await OrderProducts.findAll();
-  return orders;
-};
-
 const createUser = async (objUser) => User.create(objUser);
 
 const changeUserName = async (name, email) => {
@@ -40,7 +35,7 @@ const userOrders = async (number) => {
   }));
 };
 
-const getOrderDetail = async (orderId) => {
+const getTheOrder = async (orderId) => {
   const orderDetail = await OrderProducts.findAll({
     where: { order_id: orderId },
     raw: true,
@@ -59,21 +54,40 @@ const getOrderDetail = async (orderId) => {
         total: order['products.product_price'] * order.quantity,
       })));
 
-  const { dataValues: { createdAt } } = await Orders.findOne({
+  const { dataValues } = await Orders.findOne({
     where: { id: orderId },
-    attributes: ['createdAt'],
+    attributes: ['createdAt', 'delivered', 'street', 'street_number'],
   });
+
+  return { orderDetail, dataValues };
+};
+
+const getOrderDetail = async (orderId) => {
+  const { orderDetail, dataValues } = await getTheOrder(orderId);
   const newDate = {
     orderId,
-    day: createdAt.getDate(),
-    month: createdAt.getMonth() + 1,
+    day: dataValues.createdAt.getDate(),
+    month: dataValues.createdAt.getMonth() + 1,
+  };
+
+  return { ...newDate, products: orderDetail };
+};
+
+const getOrderComplete = async (orderId) => {
+  const { orderDetail, dataValues } = await getTheOrder(orderId);
+  const newDate = {
+    orderId,
+    day: dataValues.createdAt.getDate(),
+    month: dataValues.createdAt.getMonth() + 1,
+    address: `${dataValues.street}, ${dataValues.street_number}`,
+    delivered: dataValues.delivered,
+    total: orderDetail.reduce((acc, cur) => acc + cur.total, 0),
   };
 
   return { ...newDate, products: orderDetail };
 };
 
 module.exports = {
-  getAllOrdersProducts,
   changeUserName,
   getOrderDetail,
   getAllOrders,
@@ -81,4 +95,5 @@ module.exports = {
   userOrders,
   getUsers,
   getUser,
+  getOrderComplete,
 };

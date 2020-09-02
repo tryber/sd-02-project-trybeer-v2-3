@@ -1,9 +1,5 @@
-// const {
-//   getUsers, createUser, changeUserName, getOrders, getAllOrders, getOrderComplete,
-//   getOrderDetail,
-// } = require('../services/usersService');
-
-const { getUsers, getAllOrders, getAllOrdersProducts, createUser, changeUserName, userOrders, getOrderDetail } = require('../services/usersService');
+const { getUsers, getAllOrders, createUser,
+  changeUserName, userOrders, getOrderDetail, getOrderComplete } = require('../services/usersService');
 
 const { validationFunc } = require('./utils/schemaValidator');
 
@@ -79,28 +75,18 @@ const allOrders = async (req, res, next) => {
   });
 };
 
-const allOrdersProducts = async (req, res, _next) => {
-  // const { role } = req.user;
-  // if (role !== 'admin') return next({ code: 'unauthorized', message: 'User not alowed' });
-  const orders = await getAllOrdersProducts();
+const adminOrderDetail = async (req, res, next) => {
+  const { role } = req.user;
+  const { id } = req.params;
+  if (role !== 'admin') return next({ code: 'unauthorized', message: 'User not alowed' });
+  const order = await getOrderComplete(id);
+  if (order.error) return next({ code: 'not_found', message: 'Wrong ID' });
+
   return res.status(200).json({
     status: 'success',
-    orders,
+    order,
   });
 };
-
-// const adminOrderDetail = async (req, res, next) => {
-//   const { role } = req.user;
-//   const { id } = req.params;
-//   if (role !== 'admin') return next({ code: 'unauthorized', message: 'User not alowed' });
-//   const order = await getOrderComplete(id);
-//   if (order.error) return next({ code: 'not_found', message: 'Wrong ID' });
-
-//   return res.status(200).json({
-//     status: 'success',
-//     order,
-//   });
-// };
 
 module.exports = {
   getAllUsers,
@@ -110,6 +96,5 @@ module.exports = {
   // getUser,
   orderDetails,
   allOrders,
-  // adminOrderDetail,
-  allOrdersProducts,
+  adminOrderDetail,
 };
