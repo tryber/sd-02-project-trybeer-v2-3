@@ -1,0 +1,90 @@
+.chat-section {
+  background: black;
+  bottom: 0;
+  display: flex;
+  padding: 3px;
+  position: fixed;
+  width: 98%;
+}
+
+.chat-section input {
+  border: 0;
+  margin-right: 0.5%;
+  padding: 10px;
+  width: 80%;
+}
+
+.chat-section button {
+  background: white;
+  border: none;
+  color: rgb(24, 83, 0);
+  cursor: pointer;
+  font-size: xx-large;
+  padding: 10px;
+  width: 20%;
+}
+
+.chat-messages-right {
+  margin: 1rem;
+  text-align: right;
+}
+
+.chat-messages-left {
+  margin: 1rem;
+}
+
+.chat-messages-list {
+  margin: 5rem 0;
+  overflow-y: scroll;
+}
+
+.chat-messages-list-admin {
+  margin: 0 0 5rem 28%;
+  overflow-y: scroll;
+}
+
+.chat-section-admin {
+  background: black;
+  bottom: 0;
+  display: flex;
+  padding: 3px;
+  position: fixed;
+  right: 0;
+  width: 74.5%;
+}
+
+.chat-section-admin input {
+  border: 0;
+  margin-right: 0.5%;
+  padding: 10px;
+  width: 80%;
+}
+
+.chat-section-admin button {
+  background: white;
+  border: none;
+  color: rgb(24, 83, 0);
+  cursor: pointer;
+  font-size: xx-large;
+  padding: 10px;
+  width: 20%;
+}
+
+.chat-section button:disabled {
+  color: rgb(175, 175, 175);
+}
+
+.chat-section-admin button:disabled {
+  color: rgb(175, 175, 175);
+}
+
+.chat-title {
+  margin: 2rem 28% 5rem;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+}

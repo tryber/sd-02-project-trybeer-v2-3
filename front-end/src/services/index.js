@@ -9,6 +9,9 @@ const APIGetAdminOrders = 'http://localhost:3001/orders/admin';
 const APIOrderAdminDetail = 'http://localhost:3001/orders/admin/';
 const APICheckout = 'http://localhost:3001/orders/';
 const APIGetDetailsOrder = 'http://localhost:3001/orders/';
+const APIGetAllMessages = 'http://localhost:3001/messages/';
+const APIGetClientMessages = 'http://localhost:3001/messages/';
+const APIPostMessages = 'http://localhost:3001/messages/';
 
 const headers = {
   Accept: '*/*',
@@ -63,3 +66,12 @@ export const sendToOrderAPI = async (token, obj) => axios
 
 export const getClientOrderDetail = (token, id) => axios
   .get(`${APIGetDetailsOrder}${id}`, { headers: patchHeaders(token) });
+
+export const getAllMessages = async (token) => axios
+  .get(APIGetAllMessages, { headers: patchHeaders(token) });
+
+export const getClientMessages = async (token, id) => axios
+  .get(`${APIGetClientMessages}${id}`, ({ headers: patchHeaders(token) }));
+
+export const postMessage = async (token, id, message) => axios
+  .post(`${APIPostMessages}`, { userId: id, message }, { headers: patchHeaders(token) });
