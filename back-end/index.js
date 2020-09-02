@@ -12,6 +12,7 @@ const productsRoute = require('./routes/productsRoute');
 const ordersRoute = require('./routes/ordersRoute');
 
 const app = express();
+
 app.use(express.json());
 app.use(cors({ allowedHeaders: '*' }));
 app.use('/', express.static(`${__dirname}/public`));
