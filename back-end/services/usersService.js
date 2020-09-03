@@ -18,7 +18,6 @@ const getAllOrders = async () => {
 const createUser = async (objUser) => User.create(objUser);
 
 const changeUserName = async (name, email) => {
-  console.log(name, email);
   User.update(
     { name },
     { where: { email } },
@@ -26,7 +25,7 @@ const changeUserName = async (name, email) => {
 };
 
 const userOrders = async (number) => {
-  const allOrders = await Orders.findAll({ where: { id: number }, attributes: ['id', 'total', 'createdAt'] });
+  const allOrders = await Orders.findAll({ where: { client_id: number }, attributes: ['id', 'total', 'createdAt'] });
   return allOrders.map(({ id, total, createdAt }) => ({
     orderId: id,
     total,
@@ -53,7 +52,6 @@ const getTheOrder = async (orderId) => {
         price: order['products.product_price'],
         total: order['products.product_price'] * order.quantity,
       })));
-
   const { dataValues } = await Orders.findOne({
     where: { id: orderId },
     attributes: ['createdAt', 'delivered', 'street', 'street_number'],
@@ -83,7 +81,6 @@ const getOrderComplete = async (orderId) => {
     delivered: dataValues.delivered,
     total: orderDetail.reduce((acc, cur) => acc + cur.total, 0),
   };
-
   return { ...newDate, products: orderDetail };
 };
 

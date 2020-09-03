@@ -15,7 +15,7 @@ const OrderProductsModel = (sequelize, DataTypes) => {
     });
     OrderProducts.belongsTo(models.Products, {
       as: 'products',
-      foreignKey: 'id',
+      foreignKey: 'product_id',
       through: 'OrderProducts',
     });
   };

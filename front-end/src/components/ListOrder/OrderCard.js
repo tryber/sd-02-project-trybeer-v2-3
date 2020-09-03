@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 
 export default function OrderCard(order) {
   const {
-    orderId, adress, total, deliver,
+    id, street, street_number: number, delivered, total,
   } = order.order;
   return (
-    <Link to={`/admin/orders/${orderId}`}>
+    <Link to={`/admin/orders/${id}`}>
       <div className="order-card">
-        <h4>{`Pedido ${orderId}`}</h4>
-        <p>{adress}</p>
+        <h4>{`Pedido ${id}`}</h4>
+        <p>{`${street}, ${number}`}</p>
         <h5>{`R$ ${total.toFixed(2)}`}</h5>
-        <p>{deliver ? 'Entregue' : 'Pendente'}</p>
+        <p>{delivered}</p>
       </div>
     </Link>
   );

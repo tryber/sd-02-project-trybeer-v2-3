@@ -78,6 +78,7 @@ const allOrders = async (req, res, next) => {
 const adminOrderDetail = async (req, res, next) => {
   const { role } = req.user;
   const { id } = req.params;
+
   if (role !== 'admin') return next({ code: 'unauthorized', message: 'User not alowed' });
   const order = await getOrderComplete(id);
   if (order.error) return next({ code: 'not_found', message: 'Wrong ID' });

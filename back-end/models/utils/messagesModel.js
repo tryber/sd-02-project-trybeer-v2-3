@@ -1,5 +1,5 @@
 const { connectionMongoDb } = require('./connection');
-const userModelFake = require('./userModelFake');
+const { User } = require('..');
 
 const saveDb = async (email, message, fromClient, userId, id) => {
   const adjustedId = userId || id;
@@ -29,7 +29,7 @@ const getAllMessages = async () => {
 
 const getMessagesFromId = async (id) => {
   const db = await connectionMongoDb();
-  const email = (await userModelFake.getById(id))[0][3];
+  const { dataValues: { email } } = await User.findByPk(id);
   return db.collection('chatMessages').find({ email }).toArray();
 };
 

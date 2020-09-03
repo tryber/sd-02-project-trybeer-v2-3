@@ -12,7 +12,7 @@ const ButtonChat = () => {
       className="Sidebar_Button"
       onClick={() => history.push(role === 'admin' ? '/admin/messages' : '/messages')}
     >
-      Messages
+      {role === 'admin' ? 'Conversas' : 'Conversar com a loja'}
     </button>
   );
 };

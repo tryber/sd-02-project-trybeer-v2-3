@@ -46,8 +46,8 @@ export default function OrderDetail() {
         {loading ? 'Loading'
           : (
             <div className="Admin_detail_div_all">
-              <ListOrderDetailed order={order.order[0]} />
-              {!order.order[0].deliver ? renderButton(setloading, id) : ''}
+              <ListOrderDetailed order={order.order} />
+              {!order.order.delivered ? renderButton(setloading, id) : ''}
             </div>
           )}
       </div>

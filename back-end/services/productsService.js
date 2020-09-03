@@ -2,7 +2,8 @@ const { Products, Orders, OrderProducts } = require('../models');
 
 const getProducts = async () => {
   const products = await Products.findAll();
-  return products;
+  return products.map(({ id, product_name: name, product_price: price, picture }) => (
+    { productId: id, name, price, picture }));
 };
 
 const delivered = async (id, status) => {
@@ -23,7 +24,6 @@ const newOrder = async (id, street, streetNumber, products) => Orders.create({
 });
 
 const addProducts = async (products, dataValues) => {
-  console.log(products, dataValues);
   Promise.all(products.forEach(({ id, quantity }) => OrderProducts.create({
     product_id: id,
     quantity,
