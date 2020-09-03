@@ -2,7 +2,8 @@ const { Products, Orders, OrderProducts } = require('../models');
 
 const getProducts = async () => {
   const products = await Products.findAll();
-  return products;
+  return products.map(({ id, product_name: name, product_price: price, picture }) => (
+    { productId: id, name, price, picture }));
 };
 
 const delivered = async (id, status) => {

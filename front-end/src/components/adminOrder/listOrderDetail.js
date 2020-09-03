@@ -3,14 +3,14 @@ import React from 'react';
 export default function ListOrderDetailed(order) {
   const {
     orderId,
-    deliver,
+    delivered,
     total,
     products,
   } = order.order;
   return (
     <div className="List_Order_Detail_all">
       <div className="title-orders">
-        <h5>{`Pedido ${orderId} - ${deliver ? 'Entregue' : 'Pendente'}`}</h5>
+        <h5>{`Pedido ${orderId} - ${delivered}`}</h5>
       </div>
       <div className="container-big-border">
         {products.map((product) => (

@@ -14,8 +14,8 @@ const sendToOrder = async (street, streetNumber, setError, setRedirect, setCartP
     const cart = Object.values(JSON.parse(localStorage.getItem('cart')));
     const ids = Object.keys(JSON.parse(localStorage.getItem('cart')));
     const { token } = JSON.parse(localStorage.getItem('user'));
-    const products = cart.map(({ quantity }, index) => ({
-      quantity, id: Number(ids[index]),
+    const products = cart.map(({ quantity, price }, index) => ({
+      quantity, id: Number(ids[index]), price,
     }));
     const obj = {
       street, streetNumber, products,
