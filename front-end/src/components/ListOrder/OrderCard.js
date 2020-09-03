@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function OrderCard(order) {
   const {
-    id, street, street_number: number, delivered, total
+    id, street, street_number: number, delivered, total,
   } = order.order;
   return (
     <Link to={`/admin/orders/${id}`}>

@@ -37,8 +37,6 @@ export default function OrderDetail() {
     fetchOrderDetail();
   }, [id, loading]);
 
-  console.log(order.order);
-
   if (redirect) return <Redirect to="/login" />;
 
   return (

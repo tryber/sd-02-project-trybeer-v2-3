@@ -16,7 +16,6 @@ const login = async (req, res, next) => {
     const { dataValues } = await getUser(email);
 
     if (!dataValues || dataValues.password !== Number(password)) {
-      console.log('oi');
       return next({ code: 'unauthorized', message: 'User not found or wrong password' });
     }
 

@@ -3,7 +3,6 @@ import Trybeer from '../../context';
 
 const ShowDetails = () => {
   const { orderDetail } = useContext(Trybeer);
-  console.log(orderDetail);
   let total = 0;
   return orderDetail.products ? (
     <div className="Details_order">

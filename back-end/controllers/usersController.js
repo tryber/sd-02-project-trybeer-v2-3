@@ -55,7 +55,6 @@ const myOrders = async (req, res) => {
 
 const orderDetails = async (req, res, next) => {
   const { id } = req.params;
-  console.log(id);
   const { id: userId } = req.user;
   const order = await getOrderDetail(id, userId);
   if (order.error) return next({ code: 'unauthorized', message: 'User not alowed' });
@@ -79,7 +78,7 @@ const allOrders = async (req, res, next) => {
 const adminOrderDetail = async (req, res, next) => {
   const { role } = req.user;
   const { id } = req.params;
-  console.log(id);
+
   if (role !== 'admin') return next({ code: 'unauthorized', message: 'User not alowed' });
   const order = await getOrderComplete(id);
   if (order.error) return next({ code: 'not_found', message: 'Wrong ID' });

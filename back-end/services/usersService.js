@@ -18,7 +18,6 @@ const getAllOrders = async () => {
 const createUser = async (objUser) => User.create(objUser);
 
 const changeUserName = async (name, email) => {
-  console.log(name, email);
   User.update(
     { name },
     { where: { email } },
@@ -82,7 +81,6 @@ const getOrderComplete = async (orderId) => {
     delivered: dataValues.delivered,
     total: orderDetail.reduce((acc, cur) => acc + cur.total, 0),
   };
-  console.log(orderDetail);
   return { ...newDate, products: orderDetail };
 };
 

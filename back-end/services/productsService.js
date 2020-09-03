@@ -24,7 +24,6 @@ const newOrder = async (id, street, streetNumber, products) => Orders.create({
 });
 
 const addProducts = async (products, dataValues) => {
-  console.log(products, dataValues);
   Promise.all(products.forEach(({ id, quantity }) => OrderProducts.create({
     product_id: id,
     quantity,
