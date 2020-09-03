@@ -57,9 +57,9 @@ export const getAdminOrders = async (token) => axios
 export const getOrderAdminDetail = async (token, id) => axios
   .get(`${APIOrderAdminDetail}${id}`, { headers: patchHeaders(token) });
 
-export const changeToDelivered = async (token, id) => axios
+export const changeToDelivered = async (token, id, status) => axios
   .patch(`http://localhost:3001/orders/admin/${id}/delivered`,
-    undefined, { headers: patchHeaders(token) });
+    { status }, { headers: patchHeaders(token) });
 
 export const sendToOrderAPI = async (token, obj) => axios
   .post(APICheckout, obj, { headers: patchHeaders(token) });
