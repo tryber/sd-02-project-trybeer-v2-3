@@ -2,6 +2,7 @@ module.exports = {
   up: async (queryInterface) =>
     queryInterface.bulkInsert('Orders', [
       {
+        id: 1,
         delivered: 'Pendente',
         street: 'Rua 1',
         street_number: 22,
@@ -11,6 +12,7 @@ module.exports = {
         total: 21.86,
       },
       {
+        id: 2,
         delivered: 'Preparando',
         street: 'Rua 2',
         street_number: 820,
@@ -20,6 +22,7 @@ module.exports = {
         total: 15.39,
       },
       {
+        id: 3,
         delivered: 'Entregue',
         street: 'Rua 3',
         street_number: 52,

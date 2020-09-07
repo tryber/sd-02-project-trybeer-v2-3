@@ -58,5 +58,4 @@ app.listen(port, () => {
   console.log(`Port: ${port}, Prod`);
 });
 
-socketIoServer.listen(4555);
-console.log('Socket.io ouvindo na porta 4555');
+socketIoServer.listen(4555, () => console.log('Socket.io ouvindo na porta 4555'));
