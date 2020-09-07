@@ -31,7 +31,7 @@ const changeName = async (req, res, next) => {
   const { name } = req.body;
   const { email } = req.user;
 
-  // TEM ALGUM BUG NESSA FUNÇÃO (ALTERAR O NOME NA PÁGINA DE PERFIL)
+  // TEM ALGUM B_U_G NESSA FUNÇÃO (ALTERAR O NOME NA PÁGINA DE PERFIL)
   const { error, message } = validationFunc({ name, email }, 'change_name');
   if (error) return next({ code: 'invalid_data', message });
 
