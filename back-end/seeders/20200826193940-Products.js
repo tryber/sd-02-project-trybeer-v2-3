@@ -39,22 +39,22 @@ module.exports = {
       {
         product_name: 'Brahma Duplo Malte 350ml',
         product_price: '2.79',
-        picture: 'http://localhost:3001/images/Brahma Duplo Malte 350ml',
+        picture: 'http://localhost:3001/images/Brahma Duplo Malte 350ml.jpg',
       },
       {
         product_name: 'Becks 600ml',
         product_price: '8.89',
-        picture: 'http://localhost:3001/images/Becks 600ml',
+        picture: 'http://localhost:3001/images/Becks 600ml.jpg',
       },
       {
         product_name: 'Skol Beats Senses 269ml',
         product_price: '3.57',
-        picture: 'http://localhost:3001/images/Skol Beats Senses 269ml',
+        picture: 'http://localhost:3001/images/Skol Beats Senses 269ml.jpg',
       },
       {
         product_name: 'Stella Artois 275ml',
         product_price: '3.49',
-        picture: 'http://localhost:3001/images/Stella Artois 275ml',
+        picture: 'http://localhost:3001/images/Stella Artois 275ml.jpg',
       },
     ], {}),
 
